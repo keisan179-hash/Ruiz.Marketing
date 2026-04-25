@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruiz.Marketing | Potencia tu Presencia Digital</title>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #FFD700; /* Amarillo Gold */
+            --primary-hover: #E6C200;
+            --dark: #0A0A0A;    /* Negro profundo */
+            --dark-accent: #151515;
+            --grey: #888888;
+            --white: #FFFFFF;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        /* --- Estilos Base --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        section {
+            padding: 100px 5%;
+        }
+
+        h1, h2, h3 {
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        /* --- Header & Nav --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 25px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 15px 5%;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at top right, rgba(255, 215, 0, 0.05), transparent),
+                        linear-gradient(180deg, #0a0a0a 0%, #151515 100%);
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            line-height: 1;
+            margin-bottom: 20px;
+            max-width: 1000px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            display: block;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: var(--grey);
+            max-width: 700px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .btn-main {
+            padding: 18px 45px;
+            background-color: var(--primary);
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 800;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-main:hover {
+            background: transparent;
+            color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        /* --- Servicios --- */
+        .services {
+            background-color: var(--dark-accent);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .section-header .line {
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 0 auto;
+        }
+
+        .grid-services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--dark);
+            padding: 50px 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.03));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        .card p {
+            color: var(--grey);
+            font-size: 0.95rem;
+        }
+
+        /* --- Sobre Nosotros --- */
+        .about {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text h2 {
+            font-size: 3rem;
+            margin-bottom: 25px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--grey);
+            margin-bottom: 20px;
+        }
+
+        .about-highlight {
+            border-left: 4px solid var(--primary);
+            padding-left: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            color: var(--white);
+        }
+
+        /* --- Contacto --- */
+        .contact {
+            text-align: center;
+            background: var(--dark-accent);
+        }
+
+        .contact-box {
+            background: var(--dark);
+            padding: 60px;
+            border-radius: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .contact-box h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .phone-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 20px 0 40px;
+            display: block;
+        }
+
+        /* --- Floating Buttons --- */
+        .floating-socials {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .float-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.4rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            transition: var(--transition);
+            animation: float-anim 4s ease-in-out infinite;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .wa-float { background: #25D366; animation-delay: 0s; }
+        .ig-float { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); animation-delay: 0.5s; }
+        .fb-float { background: #1877F2; animation-delay: 1s; }
+
+        @keyframes float-anim {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 60px 5%;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-nav {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-nav a {
+            color: var(--grey);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-nav a:hover {
+            color: var(--primary);
+        }
+
+        .copy {
+            color: #444;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            header { padding: 20px 5%; }
+            nav { display: none; } /* En una versión real agregaríamos un menú hamburguesa */
+            .hero h1 { font-size: 3rem; }
+            .about-text h2 { font-size: 2.2rem; }
+            .contact-box { padding: 40px 20px; }
+            .phone-number { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <a href="#" class="logo">Ruiz<span>.Marketing</span></a>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#nosotros">Sobre Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <h1>Conectamos tu negocio <span>con más clientes</span></h1>
+        <p>Estrategias digitales de alto impacto enfocadas en posicionamiento, visibilidad y un crecimiento comercial sin límites.</p>
+        <a href="#contacto" class="btn-main">Contáctanos ahora</a>
+    </section>
+
+    <section class="services" id="servicios">
+        <div class="section-header">
+            <h2>Nuestros Servicios</h2>
+            <div class="line"></div>
+        </div>
+        <div class="grid-services">
+            <div class="card">
+                <i class="fas fa-search-location"></i>
+                <h3>Posicionamiento Digital</h3>
+                <p>Optimizamos tu presencia en buscadores para que los clientes te encuentren a ti antes que a la competencia.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-bullseye"></i>
+                <h3>Estrategias de Visibilidad</h3>
+                <p>Cuidamos cada detalle de tu marca para proyectar una imagen profesional, nítida y de alta confianza.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Crecimiento Comercial</h3>
+                <p>Implementamos embudos de venta y análisis de datos para escalar tu facturación de forma sostenible.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-share-nodes"></i>
+                <h3>Marketing en Redes</h3>
+                <p>Gestión estratégica de contenidos y pauta publicitaria en las plataformas donde realmente está tu audiencia.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="nosotros">
+        <div class="about-text">
+            <h2>Especialistas en resultados reales</h2>
+            <p>En Ruiz.Marketing entendemos que el mundo digital no se trata solo de "likes", sino de conexiones humanas que generen valor comercial.</p>
+            <div class="about-highlight">
+                "Nuestra misión es transformar la visibilidad de tu marca en un motor de ventas constante."
+            </div>
+            <p>Somos una marca dedicada a conectar empresas con sus clientes ideales mediante estrategias efectivas de marketing digital, combinando creatividad con análisis técnico.</p>
+        </div>
+    </section>
+
+    <section class="contact" id="contacto">
+        <div class="contact-box">
+            <h2>¿Hablamos de tu próximo paso?</h2>
+            <p>Inicia una conversación directa con nuestros especialistas hoy mismo.</p>
+            <span class="phone-number">3214021697</span>
+            <a href="https://wa.me/573214021697" class="btn-main" target="_blank">
+                <i class="fab fa-whatsapp"></i> Chatea en WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Botones Flotantes -->
+    <div class="floating-socials">
+        <a href="https://facebook.com" class="float-btn fb-float" target="_blank" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://instagram.com" class="float-btn ig-float" target="_blank" title="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/573214021697" class="float-btn wa-float" target="_blank" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <footer>
+        <span class="footer-logo">Ruiz<span>.Marketing</span></span>
+        <div class="footer-nav">
+            <a href="#inicio">Inicio</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+        <p class="copy">&copy; 2024 Ruiz.Marketing. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Efecto de Header al hacer Scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Revelación de elementos al hacer scroll (Simple Intersection Observer)
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .about-text, .contact-box').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.8s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
