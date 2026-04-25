@@ -1,545 +1,566 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruiz.Marketing | Estrategias Digitales de Alto Impacto</title>
+    <meta name="description" content="Ruiz.Marketing - Agencia digital especializada en conectar empresas con sus clientes mediante posicionamiento, visibilidad y crecimiento comercial.">
+    <title>Ruiz.Marketing | Estrategia Digital de Alto Impacto</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- VARIABLES Y RESET --- */
         :root {
-            --primary: #FFD700; /* Amarillo/Oro */
-            --black: #000000;
-            --dark-grey: #111111;
-            --light-grey: #1a1a1a;
-            --white: #ffffff;
-            --text-muted: #a0a0a0;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --bg-main: #0A0A0A;
+            --bg-soft: #111111;
+            --accent: #FFD600;
+            --accent-dark: #C9A800;
+            --text-white: #FFFFFF;
+            --text-grey: #AAAAAA;
+            --nav-blur: rgba(10, 10, 10, 0.85);
+            --transition-main: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--black);
-            color: var(--white);
-            line-height: 1.6;
+            background-color: var(--bg-main);
+            color: var(--text-white);
+            font-family: 'DM Sans', sans-serif;
             overflow-x: hidden;
+            line-height: 1.7;
         }
 
-        h1, h2, h3, .logo {
-            font-family: 'Montserrat', sans-serif;
+        h1, h2, h3, .bebas {
+            font-family: 'Bebas Neue', sans-serif;
             text-transform: uppercase;
-            letter-spacing: -0.5px;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 25px;
-        }
-
-        /* --- BOTONES --- */
-        .btn {
-            padding: 16px 32px;
-            border-radius: 4px; /* Estilo corporativo más cuadrado */
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-block;
-            transition: var(--transition);
-            cursor: pointer;
-            border: none;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: var(--black);
-        }
-
-        .btn-primary:hover {
-            background-color: #e6c200;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
-        }
-
-        .btn-outline {
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            background: transparent;
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: var(--black);
-        }
-
-        /* --- HEADER --- */
-        header {
-            padding: 25px 0;
+        /* --- TEXTURE OVERLAY --- */
+        body::before {
+            content: "";
             position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: var(--transition);
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 9999;
         }
 
-        header.scrolled {
-            background: rgba(0, 0, 0, 0.95);
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .nav-flex {
+        /* --- NAVBAR --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            height: 80px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            z-index: 1000;
+            background: transparent;
+            border-bottom: 2px solid transparent;
+            transition: var(--transition-main);
+        }
+
+        nav.scrolled {
+            background: var(--nav-blur);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid var(--accent);
+            height: 70px;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--white);
+            font-size: 28px;
             text-decoration: none;
+            color: var(--text-white);
+            letter-spacing: 1px;
         }
 
-        .logo span { color: var(--primary); }
+        .logo span { color: var(--accent); }
 
-        .nav-links { display: flex; gap: 30px; align-items: center; }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: var(--transition);
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
         }
 
-        .nav-links a:hover { color: var(--primary); }
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-white);
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
 
-        /* --- HERO SECTION --- */
+        .nav-menu a:hover { color: var(--accent); }
+
+        .btn-hablemos {
+            background: var(--accent);
+            color: var(--bg-main);
+            padding: 10px 24px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: var(--transition-main);
+        }
+
+        .btn-hablemos:hover { transform: scale(1.05); background: var(--text-white); }
+
+        .menu-toggle { display: none; cursor: pointer; }
+
+        /* --- HERO --- */
         .hero {
             height: 100vh;
             display: flex;
-            align-items: center;
-            background: radial-gradient(circle at top right, #1a1a1a, #000000);
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 5%;
             position: relative;
+            background: radial-gradient(circle at 80% 80%, rgba(255, 214, 0, 0.05) 0%, transparent 40%);
         }
 
-        .hero::before {
+        .hero::after {
             content: '';
             position: absolute;
-            width: 100%;
-            height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
-            opacity: 0.1;
+            bottom: 50px; right: 50px;
+            width: 150px; height: 150px;
+            background-image: radial-gradient(var(--accent) 1.5px, transparent 1.5px);
+            background-size: 15px 15px;
+            opacity: 0.3;
         }
-
-        .hero-content { position: relative; z-index: 1; max-width: 800px; }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            line-height: 1;
-            margin-bottom: 25px;
+            font-size: clamp(56px, 10vw, 120px);
+            line-height: 0.9;
+            margin-bottom: 20px;
         }
 
-        .hero h1 span {
-            display: block;
-            color: var(--primary);
+        .hero h1 .word-reveal {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
         }
+
+        .hero h1 .word-reveal span {
+            display: block;
+            animation: slideUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) both;
+        }
+
+        .hero h1 .bracket { color: var(--accent); }
 
         .hero p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
+            font-size: clamp(18px, 2vw, 22px);
+            color: var(--text-grey);
             margin-bottom: 40px;
             max-width: 600px;
         }
 
-        .hero-btns { display: flex; gap: 20px; flex-wrap: wrap; }
+        .hero-btns { display: flex; gap: 20px; }
 
-        /* --- SECCIONES COMUNES --- */
-        section { padding: 120px 0; }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 70px;
+        .btn-main {
+            padding: 18px 36px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 16px;
+            border: 2px solid transparent;
+            transition: var(--transition-main);
         }
 
-        .section-header h2 {
-            font-size: 2.5rem;
+        .btn-yellow { background: var(--accent); color: var(--bg-main); }
+        .btn-yellow:hover { background: var(--text-white); transform: translateY(-3px); }
+
+        .btn-outline { border-color: var(--text-white); color: var(--text-white); }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
+
+        .hero-stats {
+            display: flex;
+            gap: 60px;
+            margin-top: 80px;
+        }
+
+        .stat-item h3 { font-size: 48px; color: var(--accent); line-height: 1; }
+        .stat-item p { font-size: 14px; margin: 0; color: var(--text-grey); text-transform: uppercase; }
+
+        /* --- SECCIONES GENÉRICAS --- */
+        section { padding: 120px 5%; opacity: 0; transform: translateY(30px); transition: 1s all ease-out; }
+        section.reveal { opacity: 1; transform: translateY(0); }
+
+        .tag {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 14px;
+            display: block;
             margin-bottom: 15px;
+            letter-spacing: 2px;
         }
 
-        .section-header .underline {
-            width: 80px;
-            height: 4px;
-            background: var(--primary);
-            margin: 0 auto;
+        .section-title {
+            font-size: clamp(32px, 5vw, 60px);
+            margin-bottom: 60px;
+            line-height: 1.1;
         }
 
         /* --- SERVICIOS --- */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
         }
 
         .service-card {
-            background: var(--dark-grey);
-            padding: 50px 40px;
-            border: 1px solid #222;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
+            background: var(--bg-soft);
+            padding: 50px;
+            border-left: 3px solid var(--accent);
+            transition: var(--transition-main);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
-
-        .service-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0;
-            width: 100%; height: 0;
-            background: var(--primary);
-            transition: var(--transition);
-            z-index: 0;
-        }
-
-        .service-card:hover::after { height: 5px; }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: inset 0 0 0 1px var(--accent);
         }
 
-        .service-card i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 25px;
-        }
+        .service-card svg { width: 40px; height: 40px; fill: var(--accent); }
+        .service-card h3 { font-size: 24px; letter-spacing: 1px; }
+        .service-card p { color: var(--text-grey); font-size: 16px; }
 
-        .service-card h3 { margin-bottom: 15px; font-size: 1.2rem; }
-
-        .service-card p { color: var(--text-muted); font-size: 0.95rem; }
-
-        /* --- METODOLOGÍA --- */
-        .timeline {
+        /* --- NOSOTROS --- */
+        .nosotros-flex {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
         }
 
-        .step { position: relative; text-align: center; }
+        .visual-block {
+            position: relative;
+            height: 400px;
+            background: var(--bg-soft);
+        }
 
-        .step-num {
-            font-size: 5rem;
-            font-weight: 800;
-            color: rgba(255, 215, 0, 0.05);
+        .visual-accent {
             position: absolute;
-            top: -40px; left: 50%;
-            transform: translateX(-50%);
+            top: 40px; right: -20px;
+            width: 100%; height: 100%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            z-index: -1;
         }
 
-        .step h4 { color: var(--primary); margin-bottom: 10px; position: relative; }
-
-        /* --- CTA AMARILLO --- */
-        .cta-banner {
-            background: var(--primary);
-            color: var(--black);
-            padding: 80px 0;
+        .visual-text {
+            color: var(--bg-main);
+            font-family: 'Bebas Neue';
+            font-size: 80px;
+            line-height: 0.8;
             text-align: center;
         }
 
-        .cta-banner h2 { font-size: 2.5rem; margin-bottom: 30px; }
+        /* --- RESULTADOS --- */
+        .results-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .result-item h4 { font-family: 'DM Sans'; font-size: 20px; margin: 15px 0 10px; color: var(--accent); }
+        .result-item p { color: var(--text-grey); font-size: 15px; }
+        .result-item svg { width: 32px; height: 32px; fill: var(--accent); }
+
+        .closing-phrase {
+            text-align: center;
+            font-size: clamp(40px, 6vw, 100px);
+            color: var(--accent);
+            margin-top: 40px;
+        }
+
+        /* --- CONTACTO --- */
+        #contacto { text-align: center; background: linear-gradient(to bottom, var(--bg-main), #0D0D0D); }
+        .contact-title { font-size: clamp(50px, 8vw, 120px); margin-bottom: 20px; }
+        .btn-wp-large {
+            display: inline-block;
+            margin: 40px 0;
+            padding: 24px 48px;
+            background: var(--accent);
+            color: var(--bg-main);
+            font-family: 'Bebas Neue';
+            font-size: 32px;
+            text-decoration: none;
+            transition: var(--transition-main);
+        }
+        .btn-wp-large:hover { background: var(--text-white); transform: scale(1.05); }
+
+        .social-contact {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            color: var(--text-grey);
+        }
+        .social-contact a { color: var(--text-white); text-decoration: none; font-weight: 700; }
 
         /* --- FOOTER --- */
         footer {
-            background: #050505;
-            padding: 80px 0 30px;
-            border-top: 1px solid #111;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 50px;
-            margin-bottom: 50px;
-        }
-
-        .footer-logo { font-size: 1.8rem; margin-bottom: 20px; display: block; }
-
-        .footer-links h4 { margin-bottom: 25px; color: var(--primary); }
-
-        .footer-links ul { list-style: none; }
-
-        .footer-links li { margin-bottom: 12px; }
-
-        .footer-links a { color: var(--text-muted); text-decoration: none; transition: var(--transition); }
-
-        .footer-links a:hover { color: var(--primary); padding-left: 5px; }
-
-        /* --- ELEMENTOS FLOTANTES --- */
-        .floating-contact {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
+            padding: 60px 5% 30px;
+            border-top: 1px solid var(--accent);
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            z-index: 9999;
+            gap: 40px;
         }
 
-        .float-icon {
-            width: 55px;
-            height: 55px;
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-links { display: flex; gap: 20px; }
+        .footer-links a { color: var(--text-grey); text-decoration: none; font-size: 14px; }
+        .footer-bottom { text-align: center; color: #444; font-size: 12px; }
+
+        /* --- FLOATING BUTTONS --- */
+        .float-container {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 2000;
+        }
+
+        .float-btn {
+            width: 52px; height: 52px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            text-decoration: none;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            transition: var(--transition);
+            transition: var(--transition-main);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            opacity: 0; transform: translateX(50px);
+            animation: floatIn 0.6s forwards;
         }
 
-        .float-icon:hover { transform: scale(1.1) rotate(5deg); }
+        .float-btn:hover { transform: scale(1.15); box-shadow: 0 0 15px var(--accent); }
+        .float-btn svg { width: 24px; height: 24px; fill: white; }
 
-        .f-whatsapp { background: #25d366; }
-        .f-instagram { background: #e4405f; }
-        .f-facebook { background: #1877f2; }
+        .f-wp { background: #25D366; animation-delay: 0.5s; }
+        .f-ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); animation-delay: 0.6s; }
+        .f-fb { background: #1877F2; animation-delay: 0.7s; }
+
+        /* --- ANIMATIONS --- */
+        @keyframes floatIn {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
 
         /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .nav-links, .btn-nav { display: none; }
-            .hero { text-align: center; }
-            .hero-btns { justify-content: center; }
-            .section-header h2 { font-size: 2rem; }
-            .cta-banner h2 { font-size: 1.8rem; }
+        @media (max-width: 1024px) {
+            .nosotros-flex { grid-template-columns: 1fr; gap: 40px; }
+            .visual-block { height: 300px; order: -1; }
         }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px; left: 0; width: 100%;
+                background: var(--bg-main);
+                flex-direction: column;
+                padding: 40px;
+                display: none;
+                border-bottom: 2px solid var(--accent);
+            }
+            .nav-menu.active { display: flex; }
+            .menu-toggle { display: block; }
+            .hero-stats { flex-direction: column; gap: 30px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .btn-nav-desktop { display: none; }
+        }
+
+        /* Custom Cursor */
+        #cursor {
+            width: 20px; height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+            transition: transform 0.1s;
+            display: none;
+        }
+        @media (min-width: 1025px) { #cursor { display: block; } }
+
     </style>
 </head>
 <body>
 
-    <header id="header">
-        <div class="container nav-flex">
-            <a href="#" class="logo">Ruiz<span>.Marketing</span></a>
-            <nav class="nav-links">
-                <a href="#inicio">Inicio</a>
-                <a href="#servicios">Servicios</a>
-                <a href="#metodo">Metodología</a>
-                <a href="#contacto">Contacto</a>
-            </nav>
-            <a href="https://wa.me/573214021697" class="btn btn-primary btn-nav">Agendar asesoría</a>
+    <div id="cursor"></div>
+
+    <nav id="navbar">
+        <a href="#" class="logo bebas">RUIZ<span>.</span>MARKETING</a>
+        <div class="nav-menu" id="navMenu">
+            <a href="#inicio">Inicio</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#resultados">Resultados</a>
+            <a href="#contacto">Contacto</a>
+            <a href="https://wa.me/573214021697" class="btn-hablemos mobile-only">Hablemos</a>
+        </div>
+        <a href="https://wa.me/573214021697" class="btn-hablemos btn-nav-desktop">Hablemos</a>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+        </div>
+    </nav>
+
+    <header class="hero" id="inicio">
+        <h1>
+            <span class="word-reveal"><span>HACEMOS QUE TU MARCA</span></span><br>
+            <span class="word-reveal"><span class="bracket">[DOMINE] EL DIGITAL</span></span>
+        </h1>
+        <p>Posicionamiento · Visibilidad · Crecimiento Comercial</p>
+        <div class="hero-btns">
+            <a href="#contacto" class="btn-main btn-yellow">Quiero crecer →</a>
+            <a href="#servicios" class="btn-main btn-outline">Ver servicios</a>
+        </div>
+
+        <div class="hero-stats">
+            <div class="stat-item">
+                <h3 class="counter" data-target="150">+0</h3>
+                <p>Clientes conectados</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="counter" data-target="3">+0x</h3>
+                <p>ROI Promedio</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="counter" data-target="5">+0</h3>
+                <p>Años de experiencia</p>
+            </div>
         </div>
     </header>
 
-    <section id="inicio" class="hero">
-        <div class="container">
-            <div class="hero-content" data-aos="fade-right">
-                <h1>Estrategias digitales que <span>conectan tu negocio</span></h1>
-                <p>Impulsamos tu posicionamiento, visibilidad y crecimiento comercial mediante sistemas de marketing estratégico diseñados para vender.</p>
-                <div class="hero-btns">
-                    <a href="#servicios" class="btn btn-primary">Quiero crecer mi negocio</a>
-                    <a href="https://wa.me/573214021697" class="btn btn-outline"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section style="background: var(--light-grey);">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>No solo hacemos marketing, <span>creamos resultados</span></h2>
-                <div class="underline"></div>
-            </div>
-            <div class="services-grid">
-                <div class="service-card" data-aos="zoom-in">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Más Clientes</h3>
-                    <p>Filtramos y atraemos prospectos calificados interesados en tu producto.</p>
-                </div>
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
-                    <i class="fas fa-eye"></i>
-                    <h3>Visibilidad</h3>
-                    <p>Hacemos que tu marca sea la primera opción cuando busquen tu servicio.</p>
-                </div>
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
-                    <i class="fas fa-bullseye"></i>
-                    <h3>Estrategias Reales</h3>
-                    <p>Nada de métricas de vanidad. Nos enfocamos en el retorno de inversión.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="servicios">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Nuestros Servicios <span>Especializados</span></h2>
-                <div class="underline"></div>
+        <span class="tag">[ NUESTRAS SOLUCIONES ]</span>
+        <h2 class="section-title">LO QUE HACEMOS MEJOR</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <h3>SEO & Posicionamiento</h3>
+                <p>Aparece primero en Google cuando te buscan. Optimizamos cada rincón de tu presencia técnica y de contenido.</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up">
-                    <i class="fas fa-search-dollar"></i>
-                    <h3>Posicionamiento Digital</h3>
-                    <p>Optimización para buscadores y presencia estratégica en el ecosistema digital.</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fas fa-ad"></i>
-                    <h3>Publicidad Pagada</h3>
-                    <p>Campañas de Google Ads y Meta Ads orientadas 100% a la conversión.</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-sync"></i>
-                    <h3>Embudos de Venta</h3>
-                    <p>Diseñamos el camino que recorre tu cliente desde que te conoce hasta que compra.</p>
+            <div class="service-card">
+                <svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM8 15c0-2.21 1.79-4 4-4s4 1.79 4 4-1.79 4-4 4-4-1.79-4-4z"/></svg>
+                <h3>Publicidad Digital</h3>
+                <p>Campañas en SEM y Meta Ads que convierten. No buscamos impresiones, buscamos transacciones.</p>
+            </div>
+            <div class="service-card">
+                <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                <h3>Gestión de Redes Sociales</h3>
+                <p>Contenido estratégico que genera comunidad. Convertimos seguidores en embajadores de tu marca.</p>
+            </div>
+            <div class="service-card">
+                <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
+                <h3>Consultoría en Crecimiento</h3>
+                <p>Estrategia pura basada en datos. Analizamos tu embudo y tapamos los huecos por donde se escapan tus ventas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="nosotros">
+        <div class="nosotros-flex">
+            <div>
+                <span class="tag">[ QUIÉNES SOMOS ]</span>
+                <h2 class="section-title">ESTRATEGIA DIGITAL QUE CONECTA</h2>
+                <p>En Ruiz.Marketing somos especialistas en construir puentes digitales entre marcas y audiencias. No solo generamos tráfico, creamos conversaciones, confianza y crecimiento real. Cada estrategia es diseñada con datos, ejecutada con precisión y medida con resultados.</p>
+            </div>
+            <div class="visual-block">
+                <div class="visual-accent">
+                    <div class="visual-text">DATA<br>DRIVEN<br>GROWTH</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="metodo" style="background: var(--light-grey);">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Cómo lo <span>Logramos</span></h2>
-                <div class="underline"></div>
+    <section id="resultados">
+        <h2 class="section-title">POR QUÉ ELEGIR RUIZ.MARKETING</h2>
+        <div class="results-list">
+            <div class="result-item">
+                <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                <h4>Estrategia primero</h4>
+                <p>Nada al azar, todo medible. Antes de ejecutar, trazamos el mapa del éxito.</p>
             </div>
-            <div class="timeline">
-                <div class="step" data-aos="fade-right">
-                    <span class="step-num">01</span>
-                    <h4>Análisis</h4>
-                    <p>Entendemos tu negocio y tu cliente ideal.</p>
-                </div>
-                <div class="step" data-aos="fade-right" data-aos-delay="100">
-                    <span class="step-num">02</span>
-                    <h4>Estrategia</h4>
-                    <p>Creamos un plan táctico personalizado.</p>
-                </div>
-                <div class="step" data-aos="fade-right" data-aos-delay="200">
-                    <span class="step-num">03</span>
-                    <h4>Ejecución</h4>
-                    <p>Lanzamos y optimizamos en tiempo real.</p>
-                </div>
-                <div class="step" data-aos="fade-right" data-aos-delay="300">
-                    <span class="step-num">04</span>
-                    <h4>Escalado</h4>
-                    <p>Multiplicamos lo que funciona para crecer.</p>
-                </div>
+            <div class="result-item">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                <h4>Enfoque en conversión</h4>
+                <p>No nos pagan por likes, nos pagan por generar leads y ventas reales.</p>
+            </div>
+            <div class="result-item">
+                <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                <h4>Transparencia total</h4>
+                <p>Reportes claros y acceso directo a tus métricas. Sin secretos.</p>
+            </div>
+            <div class="result-item">
+                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                <h4>Soporte continuo</h4>
+                <p>Somos un aliado, no un proveedor externo. Crecemos contigo.</p>
             </div>
         </div>
+        <h3 class="closing-phrase bebas">TU CRECIMIENTO ES NUESTRO OBJETIVO</h3>
     </section>
-
-    <div class="cta-banner">
-        <div class="container" data-aos="zoom-in">
-            <h2>¿Listo para llevar tu negocio al siguiente nivel?</h2>
-            <a href="https://wa.me/573214021697" class="btn btn-black" style="background: black; color: var(--primary); padding: 20px 40px; font-size: 1.1rem;">INICIAR MI ASESORÍA</a>
-        </div>
-    </div>
 
     <section id="contacto">
-        <div class="container">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 60px; align-items: center;">
-                <div data-aos="fade-right">
-                    <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Sobre <span style="color: var(--primary);">Nosotros</span></h2>
-                    <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem;">
-                        En <strong>Ruiz.Marketing</strong> somos especialistas en conectar empresas con oportunidades. No solo gestionamos canales, construimos puentes sólidos entre las marcas y sus clientes finales a través de datos y creatividad.
-                    </p>
-                    <p><strong>WhatsApp:</strong> +57 321 402 1697</p>
-                </div>
-                <div style="background: var(--dark-grey); padding: 40px; border-radius: 8px; border: 1px solid #333;" data-aos="fade-left">
-                    <h3 style="margin-bottom: 20px; color: var(--primary);">Solicita Información</h3>
-                    <p style="margin-bottom: 25px;">Déjanos ayudarte a trazar la mejor ruta para tu crecimiento comercial.</p>
-                    <a href="https://wa.me/573214021697" class="btn btn-primary" style="width: 100%;">Hablar con un consultor</a>
-                </div>
-            </div>
+        <h2 class="contact-title bebas">¿LISTO PARA DOMINAR TU MERCADO?</h2>
+        <p>Cuéntanos sobre tu negocio. La primera consulta es gratis.</p>
+        <a href="https://wa.me/573214021697" class="btn-wp-large">ESCRÍBENOS POR WHATSAPP →</a>
+        
+        <div class="social-contact">
+            <span>📱 WhatsApp: <a href="https://wa.me/573214021697">+57 321 402 1697</a></span>
+            <span>📸 Instagram: <a href="https://instagram.com/RuizMarketing">@RuizMarketing</a></span>
+            <span>👥 Facebook: <a href="https://facebook.com/Ruiz.Marketing">Ruiz.Marketing</a></span>
         </div>
     </section>
 
     <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-info">
-                    <a href="#" class="logo footer-logo">Ruiz<span>.Marketing</span></a>
-                    <p style="color: var(--text-muted);">Estrategias digitales de alto impacto que generan resultados comerciales reales.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Navegación</h4>
-                    <ul>
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#servicios">Servicios</a></li>
-                        <li><a href="#metodo">Metodología</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Contacto</h4>
-                    <ul>
-                        <li><i class="fas fa-phone"></i> +57 321 402 1697</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Colombia</li>
-                    </ul>
-                </div>
+        <div class="footer-top">
+            <a href="#" class="logo bebas">RUIZ<span>.</span>MARKETING</a>
+            <div class="footer-links">
+                <a href="#servicios">Servicios</a>
+                <a href="#nosotros">Nosotros</a>
+                <a href="#contacto">Contacto</a>
             </div>
-            <div style="text-align: center; border-top: 1px solid #222; padding-top: 30px; font-size: 0.8rem; color: #555;">
-                <p>&copy; 2026 Ruiz.Marketing. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="https://instagram.com/RuizMarketing">IG</a>
+                <a href="https://facebook.com/Ruiz.Marketing">FB</a>
+                <a href="https://wa.me/573214021697">WA</a>
             </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 Ruiz.Marketing · Todos los derechos reservados
         </div>
     </footer>
 
-    <div class="floating-contact">
-        <a href="https://wa.me/573214021697" class="float-icon f-whatsapp" title="WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="#" class="float-icon f-instagram" title="Instagram">
-            <i class="fab fa-instagram"></i>
-        </a>
-        <a href="#" class="float-icon f-facebook" title="Facebook">
-            <i class="fab fa-facebook-f"></i>
-        </a>
-    </div>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Inicializar animaciones de scroll
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
-        });
-
-        // Efecto del Header al hacer scroll
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth scroll para navegación interna
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+    <div class="float-container">
+        <a href="https://wa.me/573214021697" class="float-btn f-wp">
+            <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-2.32 0-4.518.913-6.155 2.551a8.653 8.653 0 00-2.551 6.15c0 1.558.411 3.082 1.191 4.417L3.38 23.01l3.856-1.011c1.289.702 2.73 1.074 4.195 1.074h.005c2.321 0 4.522-.912 6.16-2.55a8.665 8.665 0 002.546-6.16c0-2.32-.912-4.517-2.55-6.155a8.651 8.651 0 00-6.261-2.536zm5.18 12.391c-.69 1.954-3.551 1.741-4.846 1.144-3.136-1.448-5.127-4.537-5.127-4.537-.905-1.124-1.636-2.617-1.096-3.873.435-1.011 1.341-1.3
