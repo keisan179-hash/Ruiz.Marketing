@@ -4,177 +4,343 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ruiz.Marketing | Estrategias Digitales de Alto Impacto</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* --- VARIABLES Y RESET --- */
+        :root {
+            --primary: #FFD700; /* Amarillo/Oro */
+            --black: #000000;
+            --dark-grey: #111111;
+            --light-grey: #1a1a1a;
+            --white: #ffffff;
+            --text-muted: #a0a0a0;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        /* --- BOTONES --- */
+        .btn {
+            padding: 16px 32px;
+            border-radius: 4px; /* Estilo corporativo más cuadrado */
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--black);
+        }
+
+        .btn-primary:hover {
+            background-color: #e6c200;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--black);
+        }
+
+        /* --- HEADER --- */
+        header {
+            padding: 25px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span { color: var(--primary); }
+
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--primary); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at top right, #1a1a1a, #000000);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+            opacity: 0.1;
+        }
+
+        .hero-content { position: relative; z-index: 1; max-width: 800px; }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            line-height: 1;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            display: block;
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .hero-btns { display: flex; gap: 20px; flex-wrap: wrap; }
+
+        /* --- SECCIONES COMUNES --- */
+        section { padding: 120px 0; }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .section-header .underline {
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            margin: 0 auto;
+        }
+
+        /* --- SERVICIOS --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--dark-grey);
+            padding: 50px 40px;
+            border: 1px solid #222;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 0;
+            background: var(--primary);
+            transition: var(--transition);
+            z-index: 0;
+        }
+
+        .service-card:hover::after { height: 5px; }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .service-card h3 { margin-bottom: 15px; font-size: 1.2rem; }
+
+        .service-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* --- METODOLOGÍA --- */
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .step { position: relative; text-align: center; }
+
+        .step-num {
+            font-size: 5rem;
+            font-weight: 800;
+            color: rgba(255, 215, 0, 0.05);
+            position: absolute;
+            top: -40px; left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .step h4 { color: var(--primary); margin-bottom: 10px; position: relative; }
+
+        /* --- CTA AMARILLO --- */
+        .cta-banner {
+            background: var(--primary);
+            color: var(--black);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-banner h2 { font-size: 2.5rem; margin-bottom: 30px; }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #050505;
+            padding: 80px 0 30px;
+            border-top: 1px solid #111;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo { font-size: 1.8rem; margin-bottom: 20px; display: block; }
+
+        .footer-links h4 { margin-bottom: 25px; color: var(--primary); }
+
+        .footer-links ul { list-style: none; }
+
+        .footer-links li { margin-bottom: 12px; }
+
+        .footer-links a { color: var(--text-muted); text-decoration: none; transition: var(--transition); }
+
+        .footer-links a:hover { color: var(--primary); padding-left: 5px; }
+
+        /* --- ELEMENTOS FLOTANTES --- */
+        .floating-contact {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 9999;
+        }
+
+        .float-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            transition: var(--transition);
+        }
+
+        .float-icon:hover { transform: scale(1.1) rotate(5deg); }
+
+        .f-whatsapp { background: #25d366; }
+        .f-instagram { background: #e4405f; }
+        .f-facebook { background: #1877f2; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-links, .btn-nav { display: none; }
+            .hero { text-align: center; }
+            .hero-btns { justify-content: center; }
+            .section-header h2 { font-size: 2rem; }
+            .cta-banner h2 { font-size: 1.8rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="container flex-nav">
-            <div class="logo">Ruiz<span>.Marketing</span></div>
-            <nav class="nav-menu">
+    <header id="header">
+        <div class="container nav-flex">
+            <a href="#" class="logo">Ruiz<span>.Marketing</span></a>
+            <nav class="nav-links">
                 <a href="#inicio">Inicio</a>
                 <a href="#servicios">Servicios</a>
-                <a href="#estrategia">Estrategia</a>
-                <a href="#nosotros">Nosotros</a>
+                <a href="#metodo">Metodología</a>
+                <a href="#contacto">Contacto</a>
             </nav>
             <a href="https://wa.me/573214021697" class="btn btn-primary btn-nav">Agendar asesoría</a>
-            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
         </div>
     </header>
-
-    <section id="inicio" class="hero">
-        <div class="container hero-content" data-aos="fade-up">
-            <h1>Estrategias digitales que <span class="highlight">conectan</span> tu negocio con más clientes</h1>
-            <p>Impulsamos tu posicionamiento, visibilidad y crecimiento comercial con marketing estratégico de alta precisión.</p>
-            <div class="hero-btns">
-                <a href="#servicios" class="btn btn-primary">Quiero crecer mi negocio</a>
-                <a href="https://wa.me/573214021697" class="btn btn-outline"><i class="fab fa-whatsapp"></i> Contactar por WhatsApp</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="value-prop">
-        <div class="container text-center" data-aos="fade-down">
-            <h2 class="section-title">No solo hacemos marketing, creamos <span>sistemas para atraer clientes</span></h2>
-            <div class="grid-4">
-                <div class="card-value">
-                    <i class="fas fa-eye"></i>
-                    <h3>Más visibilidad</h3>
-                </div>
-                <div class="card-value">
-                    <i class="fas fa-users"></i>
-                    <h3>Más clientes</h3>
-                </div>
-                <div class="card-value">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Más ventas</h3>
-                </div>
-                <div class="card-value">
-                    <i class="fas fa-bullseye"></i>
-                    <h3>Estrategias medibles</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="servicios" class="services">
-        <div class="container">
-            <h2 class="section-title white" data-aos="fade-right">Nuestros <span>Servicios</span></h2>
-            <div class="grid-services">
-                <div class="service-box" data-aos="zoom-in">
-                    <i class="fas fa-search-location"></i>
-                    <h3>Posicionamiento Digital</h3>
-                    <p>Dominamos los algoritmos para que tu marca aparezca donde tus clientes están buscando.</p>
-                </div>
-                <div class="service-box" data-aos="zoom-in" data-aos-delay="100">
-                    <i class="fas fa-share-alt"></i>
-                    <h3>Marketing en Redes</h3>
-                    <p>Gestión estratégica de comunidades enfocada en engagement y conversión real.</p>
-                </div>
-                <div class="service-box" data-aos="zoom-in" data-aos-delay="200">
-                    <i class="fas fa-bolt"></i>
-                    <h3>Estrategias de Visibilidad</h3>
-                    <p>Campañas de alto impacto para que nadie ignore la presencia de tu negocio.</p>
-                </div>
-                <div class="service-box" data-aos="zoom-in" data-aos-delay="300">
-                    <i class="fas fa-rocket"></i>
-                    <h3>Crecimiento Comercial</h3>
-                    <p>Escalamos tus ventas mediante embudos de conversión optimizados.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="estrategia" class="workflow">
-        <div class="container">
-            <h2 class="section-title">Nuestra <span>Metodología</span></h2>
-            <div class="timeline">
-                <div class="step" data-aos="fade-right">
-                    <div class="step-number">01</div>
-                    <h4>Análisis</h4>
-                    <p>Auditamos tu situación actual y competencia.</p>
-                </div>
-                <div class="step" data-aos="fade-right" data-aos-delay="100">
-                    <div class="step-number">02</div>
-                    <h4>Estrategia</h4>
-                    <p>Diseñamos la hoja de ruta personalizada.</p>
-                </div>
-                <div class="step" data-aos="fade-right" data-aos-delay="200">
-                    <div class="step-number">03</div>
-                    <h4>Ejecución</h4>
-                    <p>Implementamos tácticas de alto rendimiento.</p>
-                </div>
-                <div class="step" data-aos="fade-right" data-aos-delay="300">
-                    <div class="step-number">04</div>
-                    <h4>Resultados</h4>
-                    <p>Medimos, optimizamos y escalamos.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta-yellow">
-        <div class="container text-center">
-            <h2>Haz que tu negocio crezca con estrategias reales</h2>
-            <a href="https://wa.me/573214021697" class="btn btn-black">Contáctanos ahora</a>
-        </div>
-    </section>
-
-    <section id="nosotros" class="about">
-        <div class="container grid-2">
-            <div class="about-text" data-aos="fade-right">
-                <h2 class="section-title">Sobre <span>Ruiz.Marketing</span></h2>
-                <p>Somos una marca enfocada en conectar empresas con sus clientes ideales mediante estrategias digitales efectivas. No creemos en el marketing de "vanidad", nos enfocamos en resultados tangibles, visibilidad y crecimiento comercial sostenido.</p>
-                <a href="https://wa.me/573214021697" class="btn btn-primary">Asesoría inmediata</a>
-            </div>
-            <div class="about-img" data-aos="fade-left">
-                <div class="img-placeholder"></div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container footer-grid">
-            <div class="footer-info">
-                <div class="logo">Ruiz<span>.Marketing</span></div>
-                <p>Estrategias digitales que generan resultados.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Links Rápidos</h4>
-                <a href="#inicio">Inicio</a>
-                <a href="#servicios">Servicios</a>
-                <a href="#estrategia">Estrategia</a>
-            </div>
-            <div class="footer-contact">
-                <h4>Contacto</h4>
-                <p><i class="fas fa-phone"></i> +57 321 402 1697</p>
-                <p><i class="fas fa-envelope"></i> hola@ruiz.marketing</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Ruiz.Marketing - Todos los derechos reservados.</p>
-        </div>
-    </footer>
-
-    <div class="floating-container">
-        <a href="https://wa.me/573214021697" class="float-btn whatsapp" target="_blank">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="#" class="float-btn instagram">
-            <i class="fab fa-instagram"></i>
-        </a>
-        <a href="#" class="float-btn facebook">
-            <i class="fab fa-facebook-f"></i>
-        </a>
-        <button id="scrollTop" class="float-btn scroll-top">
-            <i class="fas fa-chevron-up"></i>
-        </button>
-    </div>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
-</body>
-</html>
